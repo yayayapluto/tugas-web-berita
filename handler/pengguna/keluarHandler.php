@@ -2,6 +2,6 @@
 session_start();
 session_destroy();
 
-header("Location: /web_berita");
+header("Location: /web_berita/masuk");
 exit();
 ?>

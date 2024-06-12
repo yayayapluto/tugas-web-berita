@@ -15,6 +15,21 @@ if (!isset($_SESSION['data_pengguna'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Web Berita - Create News</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlGambar = document.getElementById('url_gambar');
+      const fileGambar = document.getElementById('file_gambar');
+
+      urlGambar.addEventListener('input', function() {
+        fileGambar.disabled = !!urlGambar.value.trim();
+      });
+
+      fileGambar.addEventListener('change', function() {
+        urlGambar.disabled = fileGambar.files.length > 0;
+      });
+    });
+  </script>
+</head>
 
 <body class="bg-gray-100 text-gray-800">
   <nav class="bg-white shadow-md py-4 px-8 flex justify-between items-center">
@@ -26,20 +41,22 @@ if (!isset($_SESSION['data_pengguna'])) {
   <section class="container mx-auto px-4 py-8">
     <h2 class="text-xl font-bold text-gray-800 mb-4">Buat berita baru</h2>
 
-    <form action="/web_berita/handler/tambah_berita" method="post">
+    <form action="/web_berita/handler/tambah_berita" method="post" enctype="multipart/form-data">
     <div class="flex flex-col space-y-4 bg-white rounded shadow-md p-8">
       <div class="flex flex-col">
         <label for="judul" class="text-sm font-medium">Judul Berita</label>
         <input type="text" id="judul" name="judul" placeholder="..." class="rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" required>
       </div>
 
-      <div class="flex flex-col">
-        <label for="url_gambar" class="text-sm font-medium">Url Gambar</label>
-        <input type="text" id="url_gambar" name="url_gambar" placeholder="Mohon gunakan format berikut: jpg, jpeg, png" class="rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" required>
+      <div class="flex flex-col py-2">
+        <strong class="text-sm font-medium">Gambar Berita</strong>
+        <input type="text" name="url_gambar" id="url_gambar" placeholder="Contoh: https://example.com/image.jpg" class="rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" required>
+        <strong class="text-sm text-center font-medium my-2 lg:my-3">Atau</strong>
+        <input type="file" name="file_gambar" id="file_gambar" class="rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" accept="image/*" required>
       </div>
 
       <div class="flex flex-col">
-        <label for="deskripsi" class="text-sm font-medium">Deskripsi</label>
+        <label for="deskripsi" class="text-sm font-medium ">Deskripsi</label>
         <textarea id="deskripsi" name="deskripsi" rows="15" placeholder="Tulis berita disini..." class="rounded-md border border-gray-300 px-3 py-2"></textarea>
       </div>
 

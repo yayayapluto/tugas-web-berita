@@ -199,7 +199,7 @@ class BeritaController extends Koneksi {
     }
 
     private function formatCover($url) {
-        $pattern = '/^(.*?\.(?:jpg|jpeg|png)).*$/';
+        $pattern = '/^(.*?\.(?:jpg|jpeg|png|gif|svg|webm)).*$/';
         $cover = preg_replace($pattern, '$1', $url);
         return $cover;
     }

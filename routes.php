@@ -41,6 +41,9 @@ post('/web_berita/handler/tambah_berita', '/handler/berita/tambahBeritaControlle
 post('/web_berita/handler/ubah_berita', '/handler/berita/ubahBeritaController.php');
 get('/web_berita/handler/hapus_berita/$id_berita/$judul_berita', '/handler/berita/hapusBeritaController.php');
 
+//Komentar Handler
+post('/web_berita/handler/tambah_komentar', '/handler/komentar/KomentarHandler.php');
 
 //404
+get('/web_berita/404','/public/404.php');
 any('/404','/public/404.php');

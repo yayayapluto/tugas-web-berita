@@ -7,7 +7,6 @@ if (!isset($_SESSION['data_pengguna'])) {
 }
 
 $pengguna = $_SESSION['data_pengguna'];
-print_r($pengguna);
 require_once("./controller/beritaController.php");
 $Berita = new BeritaController();
 $daftar_berita = $Berita->tampilkan_berita_berdasarkan_penulis($pengguna['id']);

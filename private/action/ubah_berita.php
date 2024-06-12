@@ -3,6 +3,11 @@ require_once("./controller/beritaController.php");
 $Berita = new BeritaController();
 $data_berita = $Berita->tampilkan_berita($judul_berita);
 
+if (!$data_berita) {
+  header('Location: /web_berita/404');
+  exit();
+}
+
 session_start();
 if (!isset($_SESSION['data_pengguna'])) {
   $_SESSION['error_msg'] = "Tidak bisa mengakses halaman tersebut, Masuk terlebih dahulu";
@@ -19,14 +24,28 @@ if (!isset($_SESSION['data_pengguna'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Web Berita - Edit News</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlGambar = document.getElementById('url_gambar');
+      const fileGambar = document.getElementById('file_gambar');
 
+      urlGambar.addEventListener('input', function() {
+        fileGambar.disabled = !!urlGambar.value.trim();
+      });
+
+      fileGambar.addEventListener('change', function() {
+        urlGambar.disabled = fileGambar.files.length > 0;
+      });
+    });
+  </script>
+</head>
 <body class="bg-gray-100 text-gray-800">
   <nav class="bg-white shadow-md py-4 px-8 flex justify-between items-center">
     <h1 class="text-xl font-bold text-gray-800">Web Berita</h1>
   </nav>
 
   <section class="container mx-auto px-4 py-8">
-    <h2 class="text-xl font-bold text-gray-800 mb-4">Edit News</h2>
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Ubah berita</h2>
 
     <form action="/web_berita/handler/ubah_berita" method="post">
       <div class="flex flex-col space-y-4 bg-white rounded shadow-md p-8">
