@@ -40,7 +40,7 @@ session_start();
       <div class="bg-white rounded shadow px-8 py-8 w-full max-w-screen-lg">
         <h2 class="text-xl font-bold mb-4"><?= str_replace("-", " ", $berita['judul']) ?></h2>
         <p class="text-gray-700 mb-2">Oleh <?= $berita['penulis'] ?> - <?= $berita['waktu_dibuat'] ?></p>
-        <img src="<?= $berita['url_gambar'] ?>" class="h-96 mx-auto aspect-video object-contain rounded-xl mb-4"
+        <img src="<?= (str_contains($berita['url_gambar'], "./media/") ? "." . $berita['url_gambar'] : $berita['url_gambar']) ?>" class="h-96 mx-auto aspect-video object-contain rounded-xl mb-4"
           alt="<?= "Gambar untuk judul: " . str_replace("-", " ", $berita['judul']) ?>">
         <p class="text-gray-700 text-base text-justify my-4"><?= $berita['deskripsi'] ?></p>
       </div>

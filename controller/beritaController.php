@@ -126,6 +126,23 @@ class BeritaController extends Koneksi {
         }
     }
 
+    public function tampilkan_jumlah_berita_berdasarkan_judul(string $judul) {
+        $query = "SELECT COUNT(*) as jumlah FROM berita WHERE berita.judul = :judul";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindParam(':judul', $judul);
+
+        try {
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_COLUMN);
+            if (!$result) {
+                return null;
+            }
+            return $result;
+        } catch (\PDOException $e) {
+            die("Tidak dapat mengambil data berita penulis" . $e->getMessage());
+        }
+    }
+
     public function buat_berita(string $judul, string $url_gambar, string $deskripsi, string $penulis) {
         $query = "INSERT INTO berita (judul, url_gambar, deskripsi, penulis) VALUES (:judul, :url_gambar, :deskripsi, :penulis)";
         $url_gambar = $this->formatCover($url_gambar);
