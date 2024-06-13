@@ -2,8 +2,8 @@
 require_once("./controller/authController.php");
 $Auth = new AuthController();
 
-$nama = $_POST['nama'];
-$password = $_POST['password'];
+$nama = htmlspecialchars($_POST['nama']);
+$password = htmlspecialchars($_POST['password']);
 
 $result = $Auth->masuk($nama, $password);
 

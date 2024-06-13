@@ -2,11 +2,11 @@
 require_once("./controller/authController.php");
 $Auth = new AuthController();
 
-$nama = $_POST['nama'];
-$password = $_POST['password'];
-$konfirmasi_password = $_POST['konfirmasi_password'];
-$email = $_POST['email'];
-$nomor_telepon = $_POST['nomor_telepon'];
+$nama = htmlspecialchars($_POST['nama']);
+$password = htmlspecialchars($_POST['password']);
+$konfirmasi_password = htmlspecialchars($_POST['konfirmasi_password']);
+$email = htmlspecialchars($_POST['email']);
+$nomor_telepon = htmlspecialchars($_POST['nomor_telepon']);
 
 session_start();
 

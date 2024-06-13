@@ -3,7 +3,7 @@ require_once("./config/koneksi.php");
 
 class PenggunaController extends Koneksi {
 
-    protected function tampilkan_semua_pengguna() {
+    public function tampilkan_semua_pengguna() {
         $query = "SELECT * FROM pengguna";
         try {
             $stmt = $this->pdo->query($query);
@@ -14,7 +14,7 @@ class PenggunaController extends Koneksi {
         }
     }
 
-    protected function tampilkan_pengguna(string $nama) {
+    public function tampilkan_pengguna(string $nama) {
         $query = "SELECT * FROM pengguna WHERE nama = :nama";
         $stmt = $this->pdo->prepare($query);
         $stmt->bindParam(':nama', $nama);
@@ -31,7 +31,7 @@ class PenggunaController extends Koneksi {
         }
     }
 
-    protected function tambah_pengguna(string $nama, string $password, string $email, string $nomor_telepon) {
+    public function tambah_pengguna(string $nama, string $password, string $email, string $nomor_telepon) {
         if ($this->apakahSudahAda($nama)) {
             return false;
         }
@@ -51,7 +51,7 @@ class PenggunaController extends Koneksi {
         }
     }
 
-    protected function ubah_pengguna(int $id, string $nama, string $password, string $email, string $nomor_telepon) {
+    public function ubah_pengguna(int $id, string $nama, string $password, string $email, string $nomor_telepon) {
         if (!$this->penggunaDenganId($id)) {
             return "Pengguna dengan ID $id tidak ditemukan";
         }
@@ -72,7 +72,7 @@ class PenggunaController extends Koneksi {
         }
     }
 
-    protected function hapus_pengguna(int $id) {
+    public function hapus_pengguna(int $id) {
         if (!$this->penggunaDenganId($id)) {
             return "Pengguna dengan ID $id tidak ditemukan";
         }
@@ -89,7 +89,7 @@ class PenggunaController extends Koneksi {
         }
     }
 
-    protected function apakahSudahAda(string $nama) {
+    public function apakahSudahAda(string $nama) {
         $query = "SELECT COUNT(*) FROM pengguna WHERE nama = :nama";
         $stmt = $this->pdo->prepare($query);
         $stmt->bindParam(':nama', $nama);
@@ -103,7 +103,7 @@ class PenggunaController extends Koneksi {
         }
     }
 
-    protected function penggunaDenganId(int $id) {
+    public function penggunaDenganId(int $id) {
         $query = "SELECT * FROM pengguna WHERE id = :id";
         $stmt = $this->pdo->prepare($query);
         $stmt->bindParam(':id', $id);

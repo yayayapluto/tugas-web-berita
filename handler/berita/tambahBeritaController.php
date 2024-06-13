@@ -3,8 +3,8 @@ require_once("./controller/beritaController.php");
 $Berita = new BeritaController();
 session_start();
 
-$judul = $_POST['judul'];
-$deskripsi = $_POST['deskripsi'];
+$judul = htmlspecialchars($_POST['judul']);
+$deskripsi = htmlspecialchars($_POST['deskripsi']);
 $penulis = $_SESSION['data_pengguna']['id'];
 
 // Mengganti spasi menjadi -
@@ -14,7 +14,8 @@ if ($Berita->tampilkan_jumlah_berita_berdasarkan_judul($judul_berita) > 0) {
     $_SESSION['error_msg'] = "Judul berita tidak tersedia";
     header("Location: /web_berita/pengguna/buatBerita");
     exit();
-} else {
+} 
+else {
     $url_gambar = "";
     if(!empty($_POST['url_gambar'])) {
         $url_gambar = $_POST['url_gambar'];
@@ -23,9 +24,9 @@ if ($Berita->tampilkan_jumlah_berita_berdasarkan_judul($judul_berita) > 0) {
         $gambar = $_FILES['file_gambar']['name'];
         $target_dir = "./media/";
 
-        if(!is_dir($target_dir)) {
-            mkdir($target_dir, 0777, true);
-        }
+        // if(!is_dir($target_dir)) {
+        //     mkdir($target_dir, 0777, true);
+        // }
 
         $target_img = $target_dir . basename($gambar);
         

@@ -11,7 +11,7 @@
 </head>
 
 <body class="bg-gray-100 text-gray-800 max-h-screen">
-  <nav class="bg-white shadow-md py-4 px-8 flex justify-between items-center">
+  <nav class="bg-white shadow-md py-4 px-8 flex justify-between items-center sticky top-0">
     <h1 class="text-xl font-bold text-gray-800">Web Berita</h1>
   </nav>
 
@@ -23,23 +23,23 @@
       <form action="/web_berita/handler/daftar" method="post" class="flex flex-col space-y-4">
         <div class="flex flex-col space-y-2">
           <label for="nama" class="text-sm font-medium">Nama</label>
-          <input type="text" id="nama" name="nama" placeholder="..." class="rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" required>
+          <input type="text" id="nama" name="nama" placeholder="Ketik nama kamu disini..." class="rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" required>
         </div>
         <div class="flex flex-col space-y-2">
           <label for="email" class="text-sm font-medium">Email</label>
-          <input type="email" id="email" name="email" placeholder="..." class="rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" required>
+          <input type="email" id="email" name="email" placeholder="Ketik alamat email kamu disini..." class="rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" required>
         </div>
         <div class="flex flex-col space-y-2">
           <label for="nomor_telepon" class="text-sm font-medium">Nomor Telepon</label>
-          <input type="tel" id="nomor_telepon" name="nomor_telepon" placeholder="..." class="rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" required>
+          <input type="tel" id="nomor_telepon" name="nomor_telepon" placeholder="Ketik nomor telepon kamu disini" class="rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" required>
         </div>
         <div class="flex flex-col space-y-2">
           <label for="password" class="text-sm font-medium">Password</label>
-          <input type="password" id="password" name="password" placeholder="..." class="rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" required>
+          <input type="password" id="password" name="password" placeholder="Ketik password kamu disini..." class="rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" required>
         </div>
         <div class="flex flex-col space-y-2">
           <label for="konfirmasi_password" class="text-sm font-medium">Konfirmasi Password</label>
-          <input type="password" id="konfirmasi_password" name="konfirmasi_password" placeholder="..." class="rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" required>
+          <input type="password" id="konfirmasi_password" name="konfirmasi_password" placeholder="Konfirmasi password disini..." class="rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" required>
         </div>
         <div class="flex items-center justify-between space-x-4">
           <div class="flex justify-between space-x-3">
