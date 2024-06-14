@@ -19,7 +19,7 @@ if ($Berita->tampilkan_jumlah_berita_berdasarkan_judul($judul) > 1) {
     $url_gambar = "";
     if(!empty($_POST['url_gambar'])) {
         $url_gambar = $_POST['url_gambar'];
-    }
+    }       
     elseif (!empty($_FILES['file_gambar']) && $_FILES['file_gambar']['error'] === UPLOAD_ERR_OK) {
         $gambar = $_FILES['file_gambar']['name'];
         $target_dir = "./media/";

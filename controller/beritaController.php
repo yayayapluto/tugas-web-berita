@@ -126,6 +126,23 @@ class BeritaController extends Koneksi {
         }
     }
 
+    private function beritaById(int $id) {
+        $query = "SELECT * FROM berita WHERE id = :id";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindParam(':id', $id);
+
+        try {
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (!$result) {
+                return null;
+            }
+            return $result;
+        } catch (\PDOException $e) {
+            die("Gagal mengambil data berita dengan ID '$id': " . $e->getMessage());
+        }
+    }
+
     public function tampilkan_jumlah_berita_berdasarkan_judul(string $judul) {
         $query = "SELECT COUNT(*) as jumlah FROM berita WHERE berita.judul = :judul";
         $stmt = $this->pdo->prepare($query);
@@ -142,6 +159,10 @@ class BeritaController extends Koneksi {
             die("Tidak dapat mengambil data berita penulis" . $e->getMessage());
         }
     }
+
+
+
+
 
     public function buat_berita(string $judul, string $url_gambar, string $deskripsi, string $penulis) {
         $query = "INSERT INTO berita (judul, url_gambar, deskripsi, penulis) VALUES (:judul, :url_gambar, :deskripsi, :penulis)";
@@ -195,23 +216,6 @@ class BeritaController extends Koneksi {
             return "Berita dengan ID $id berhasil dihapus";
         } catch (\PDOException $e) {
             die("Gagal menghapus berita: " . $e->getMessage());
-        }
-    }
-
-    private function beritaById(int $id) {
-        $query = "SELECT * FROM berita WHERE id = :id";
-        $stmt = $this->pdo->prepare($query);
-        $stmt->bindParam(':id', $id);
-
-        try {
-            $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            if (!$result) {
-                return null;
-            }
-            return $result;
-        } catch (\PDOException $e) {
-            die("Gagal mengambil data berita dengan ID '$id': " . $e->getMessage());
         }
     }
 

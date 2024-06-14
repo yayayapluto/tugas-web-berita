@@ -10,7 +10,6 @@ if (!$data_berita) {
   }
   
   session_start();
-  include_once("./components/banner.php");
 if (!isset($_SESSION['data_pengguna'])) {
   $_SESSION['error_msg'] = "Tidak bisa mengakses halaman tersebut, Masuk terlebih dahulu";
   header("Location: /web_berita");
@@ -28,9 +27,12 @@ if (!isset($_SESSION['data_pengguna'])) {
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 text-gray-800">
-  <nav class="bg-white shadow-md py-4 px-8 flex justify-between items-center sticky top-0">
-    <h1 class="text-xl font-bold text-gray-800">Web Berita</h1>
-  </nav>
+  <div class="sticky top-0">
+    <nav class="bg-white shadow-md py-4 px-8 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-gray-800">Web Berita</h1>
+    </nav>
+    <?php include_once("./components/banner.php") ?>
+  </div>
 
   <section class="container mx-auto px-4 py-8">
     <h2 class="text-xl font-bold text-gray-800 mb-4">Ubah berita</h2>

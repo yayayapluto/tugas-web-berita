@@ -11,11 +11,13 @@
 </head>
 
 <body class="bg-gray-100 text-gray-800 max-h-screen">
-  <nav class="bg-white shadow-md py-4 px-8 flex justify-between items-center sticky top-0">
-    <h1 class="text-xl font-bold text-gray-800">Web Berita</h1>
-  </nav>
-
-  <?php include("./components/banner.php") ?>
+  <div class="sticky top-0">
+    <nav class="bg-white shadow-md py-4 px-8 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-gray-800">Web Berita</h1>
+    </nav>
+  
+    <?php include("./components/banner.php") ?>
+  </div>
 
   <div class="flex items-center justify-center min-h-screen">
     <div class="w-full max-w-md p-8 space-y-4 bg-white rounded-lg shadow-md">
