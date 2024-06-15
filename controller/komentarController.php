@@ -25,6 +25,18 @@ class KomentarController extends koneksi {
             die("Tidak bisa mengambil data dari database" . $e->getMessage());
         }
     }
+    public function tampilkan_jumlah_komentar_dengan_idBerita(int $id_berita) {
+        $query = "SELECT COUNT(*) FROM komentar WHERE  `id_berita` = :id_berita";
+        try {
+            $stmt = $this->pdo->prepare($query);
+            $stmt->bindParam(':id_berita', $id_berita, PDO::PARAM_INT);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_COLUMN);
+            return $result;
+        } catch (\PDOException $e) {
+            die("Tidak bisa mengambil data dari database" . $e->getMessage());
+        }
+    }
 
     public function tampilkan_semua_komentar_dengan_idPengguna(int $id_pengguna) {
         $query = "SELECT pengguna.nama, komentar.created_at, komentar.isi FROM komentar INNER JOIN pengguna ON komentar.id_pengguna = pengguna.id WHERE `id_pengguna` = :id_pengguna";

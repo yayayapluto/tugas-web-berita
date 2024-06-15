@@ -83,6 +83,7 @@ class BeritaController extends Koneksi {
         $query = "SELECT
         berita.id,
         berita.judul,
+        pengguna.id as id_penulis,
         pengguna.nama as penulis,
         berita.created_at AS waktu_dibuat,
         berita.url_gambar,
@@ -107,7 +108,9 @@ class BeritaController extends Koneksi {
 
     public function tampilkan_berita_berdasarkan_penulis(int $id) {
         $query = "SELECT
+        berita.id as id,
         berita.judul as judul,
+        berita.url_gambar as gambar,
         berita.created_at AS waktu_dibuat
         FROM berita
         WHERE berita.penulis = :id";

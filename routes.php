@@ -31,6 +31,9 @@ get('/web_berita/daftar','/auth/daftar.php');
 //Go to logout page
 get('/web_berita/keluar','/auth/keluar.php');
 
+//Pengguna handler
+get("/web_berita/action/edit_pengguna","/private/action/ubah_pengguna.php");
+
 //Auth handler
 post('/web_berita/handler/daftar', '/handler/pengguna/daftarHandler.php');
 post('/web_berita/handler/masuk', '/handler/pengguna/masukHandler.php');
@@ -44,6 +47,11 @@ get('/web_berita/handler/hapus_berita/$id_berita/$judul_berita', '/handler/berit
 //Komentar Handler
 post('/web_berita/handler/tambah_komentar', '/handler/komentar/KomentarHandler.php');
 
+//Suka Handler
+post('/web_berita/handler/tambah_suka', '/handler/suka/tambahSukaHandler.php');
+post('/web_berita/handler/hapus_suka', '/handler/suka/hapusSukaHandler.php');
+
 //404
 get('/web_berita/404','/public/404.php');
+
 any('/404','/public/404.php');
