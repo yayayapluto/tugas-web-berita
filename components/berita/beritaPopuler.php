@@ -12,7 +12,7 @@
                         <p class="text-gray-700 mb-2 text-ellipsis text-nowrap overflow-hidden w-20  lg:w-72"><?= $berita['deskripsi'] ?></p>
                         <div class="flex justify-between items-center">
                             <p class="text-sm text-gray-500">Dibuat oleh <?= $berita['penulis'] ?> - <?= $berita['waktu_dibuat'] ?></p>
-                            <a href="/web_berita/baca/<?= $berita['judul']?>" class="py-2 px-4 bg-blue-600 rounded-sm text-white hover:shadow-lg shadow-md">Read More</a>
+                            <a href="/web_berita/baca/<?= $berita['judul']?>" class="py-2 px-4 bg-blue-600 rounded-sm text-white hover:shadow-lg shadow-md">Selengkapnya</a>
                         </div>
                     </div>
                 </div>

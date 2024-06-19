@@ -129,7 +129,7 @@ class BeritaController extends Koneksi {
         }
     }
 
-    private function beritaById(int $id) {
+    public function beritaById(int $id) {
         $query = "SELECT * FROM berita WHERE id = :id";
         $stmt = $this->pdo->prepare($query);
         $stmt->bindParam(':id', $id);
@@ -150,6 +150,22 @@ class BeritaController extends Koneksi {
         $query = "SELECT COUNT(*) as jumlah FROM berita WHERE berita.judul = :judul";
         $stmt = $this->pdo->prepare($query);
         $stmt->bindParam(':judul', $judul);
+
+        try {
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_COLUMN);
+            if (!$result) {
+                return null;
+            }
+            return $result;
+        } catch (\PDOException $e) {
+            die("Tidak dapat mengambil data berita penulis" . $e->getMessage());
+        }
+    }
+    public function tampilkan_jumlah_berita_berdasarkan_penulis(string $penulis) {
+        $query = "SELECT COUNT(*) as jumlah FROM berita WHERE berita.penulis = :penulis";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindParam(':penulis', $penulis);
 
         try {
             $stmt->execute();

@@ -33,6 +33,7 @@ get('/web_berita/keluar','/auth/keluar.php');
 
 //Pengguna handler
 get("/web_berita/action/edit_pengguna","/private/action/ubah_pengguna.php");
+post("/web_berita/handler/edit_pengguna","/handler/pengguna/ubahHandler.php");
 
 //Auth handler
 post('/web_berita/handler/daftar', '/handler/pengguna/daftarHandler.php');

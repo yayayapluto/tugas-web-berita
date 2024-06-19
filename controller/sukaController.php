@@ -61,6 +61,18 @@ class SukaController extends Koneksi {
             die("Tidak bisa mendapatkan data dari tabel like" . $e->getMessage());
         }
     }
+    public function tampilkan_jumlah_suka_dengan_penulisId(int $id) {
+        $query = "SELECT COUNT(*) FROM suka WHERE id_pengguna = :id";
+        try {
+            $stmt = $this->pdo->prepare($query);
+            $stmt->bindParam(":id", $id);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_COLUMN);
+            return $result;
+        } catch (\PDOException $e) {
+            die("Tidak bisa mendapatkan data dari tabel like" . $e->getMessage());
+        }
+    }
     public function tambah_suka(int $id_pengguna, int $id_berita) {
         $query = "INSERT INTO suka(id_pengguna,id_berita) VALUES(:id_pengguna, :id_berita)";
         try {

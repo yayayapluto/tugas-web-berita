@@ -51,16 +51,20 @@ class PenggunaController extends Koneksi {
         }
     }
 
-    public function ubah_pengguna(int $id, string $nama, string $password, string $email, string $nomor_telepon) {
+    public function ubah_pengguna(int $id,string $gambar, string $nama, string $email, string $nomor_telepon) {
         if (!$this->penggunaDenganId($id)) {
             return "Pengguna dengan ID $id tidak ditemukan";
         }
 
-        $query = "UPDATE pengguna SET nama = :nama, password = :password, email = :email, nomor_telepon = :nomor_telepon WHERE id = :id";
+        if ($this->apakahSudahAda($nama) > 1) {
+            return false;
+        }
+
+        $query = "UPDATE pengguna SET nama = :nama, email = :email, nomor_telepon = :nomor_telepon, foto_profil = :gambar WHERE id = :id";
         $stmt = $this->pdo->prepare($query);
         $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':gambar', $gambar);
         $stmt->bindParam(':nama', $nama);
-        $stmt->bindParam(':password', $password);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':nomor_telepon', $nomor_telepon);
 

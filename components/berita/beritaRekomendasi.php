@@ -10,7 +10,7 @@
                     <div class="px-4 py-2">
                         <h4 class="text-md font-bold mb-2 text-ellipsis text-nowrap overflow-hidden lg:w-full"><?= str_replace("-"," ",$berita['judul'])?></h4>
                         <p class="text-gray-700 text-sm mb-4 text-ellipsis text-nowrap overflow-hidden w-20  lg:w-72"><?= $berita['deskripsi']?></p>
-                        <a href="/web_berita/baca/<?= $berita['judul']?>" class="py-2 px-3 bg-blue-600 rounded-sm text-white hover:shadow-lg shadow-md mt-2">Read More</a>
+                        <a href="/web_berita/baca/<?= $berita['judul']?>" class="py-2 px-3 bg-blue-600 rounded-sm text-white hover:shadow-lg shadow-md mt-2">Selengkapnya</a>
                     </div>
                 </div>
             <?php endforeach ?>

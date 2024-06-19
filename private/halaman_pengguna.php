@@ -16,7 +16,6 @@ $Komentar = new KomentarController();
 $Suka = new SukaController();
 
 $daftar_berita = $Berita->tampilkan_berita_berdasarkan_penulis($pengguna['id']);
-
 ?>
 
 <!DOCTYPE html>
@@ -37,38 +36,49 @@ $daftar_berita = $Berita->tampilkan_berita_berdasarkan_penulis($pengguna['id']);
         <a href="/web_berita" class="text-blue-700 hover:text-blue-800">Beranda</a>
       </div>
     </nav>
-
     <?php include ("./components/banner.php") ?>
   </div>
-
   <section class="container mx-auto px-4 py-8 min-h-screen flex flex-col items-center">
+    <div class="bg-white rounded-lg shadow-md p-6 w-full md:w-1/2 mb-8">
+      <div class="flex items-center space-x-4 mb-4">
+        <img
+          src="<?= (isset($pengguna['foto_profil']) ? $pengguna['foto_profil'] : "https://southernplasticsurgery.com.au/wp-content/uploads/2013/10/user-placeholder-220x220.png") ?>"
+          class="rounded-full object-cover h-24 w-24" alt="Profile Picture">
+        <div>
+          <h2 class="text-2xl font-bold text-gray-800"><?= $pengguna['nama'] ?></h2>
+          <p class="text-gray-600 text-sm"><?= $pengguna['email'] ?></p>
+          <p class="text-gray-600 text-sm"><?= $pengguna['nomor_telepon'] ?></p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+        <div class="bg-white p-4 rounded-lg border-dashed border-2 border-neutral-00 text-center">
+          <p class="text-gray-600">Jumlah Berita</p>
+          <p class="text-2xl font-bold text-gray-800">
+            <?= ($Berita->tampilkan_jumlah_berita_berdasarkan_penulis($_SESSION['data_pengguna']['id']) ? $Berita->tampilkan_jumlah_berita_berdasarkan_penulis($_SESSION['data_pengguna']['id']) : "0") ?></p>
+        </div>
+        <div class="bg-white p-4 rounded-lg border-dashed border-2 border-neutral-00 text-center">
+          <p class="text-gray-600">Jumlah Suka</p>
+          <p class="text-2xl font-bold text-gray-800">
+            <?= $Suka->tampilkan_jumlah_suka_dengan_penulisId($_SESSION['data_pengguna']['id']) ?></p>
+        </div>
+        <div class="bg-white p-4 rounded-lg border-dashed border-2 border-neutral-00 text-center">
+          <p class="text-gray-600">Jumlah Komentar</p>
+          <p class="text-2xl font-bold text-gray-800">
+            <?= $Komentar->tampilkan_jumlah_komentar_dengan_idPengguna($_SESSION['data_pengguna']['id']) ?></p>
+        </div>
+      </div>
 
-  <div class="bg-white rounded-lg shadow-md p-6 w-full md:w-1/2 mb-8">
-  <div class="flex items-center space-x-4 mb-4">
-    <img src="https://southernplasticsurgery.com.au/wp-content/uploads/2013/10/user-placeholder-220x220.png"
-      class="rounded-full h-24 w-24" alt="Profile Picture">
-    <div>
-      <h2 class="text-2xl font-bold text-gray-800"><?= $pengguna['nama'] ?></h2>
-      <p class="text-gray-600 text-sm"><?= $pengguna['email'] ?></p>
-      <p class="text-gray-600 text-sm"><?= $pengguna['nomor_telepon'] ?></p>
+      <div class="flex justify-end space-x-4">
+        <a href="/web_berita/action/edit_pengguna"
+          class="inline-block bg-yellow-400 hover:bg-yellow-500 text-white py-2 px-4 rounded-lg shadow-md focus:outline-none">Ubah
+          Profil</a>
+        <a href="/web_berita/keluar"
+          class="inline-block bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg shadow-md focus:outline-none">Keluar</a>
+      </div>
     </div>
-  </div>
-  <div class="flex justify-end space-x-4">
-    <a href="/web_berita/action/edit_pengguna"
-      class="inline-block bg-yellow-400 hover:bg-yellow-500 text-white py-2 px-4 rounded-lg shadow-md focus:outline-none">Ubah
-      Profil</a>
-    <a href="/web_berita/keluar"
-      class="inline-block bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg shadow-md focus:outline-none">Keluar</a>
-  </div>
-</div>
-
-
-
     <a href="/web_berita/pengguna/buatBerita"
       class="w-1/2 h-12 p-3 text-center bg-blue-500 text-white rounded-xl shadow-md hover:bg-blue-600 focus:outline-none">Tulis
       berita baru</a>
-
-
     <div class="bg-white rounded shadow px-8 py-8 w-full mt-8 md:w-1/2">
       <h2 class="text-xl font-bold mb-4 text-gray-800">Daftar berita yang kamu tulis</h2>
       <?php if ($daftar_berita > 0): ?>
@@ -80,7 +90,6 @@ $daftar_berita = $Berita->tampilkan_berita_berdasarkan_penulis($pengguna['id']);
                 <h2 class="text-gray-800 hover:text-blue-700 font-bold text-xl mb-2">
                   <a href="/web_berita/baca/<?= $berita['judul'] ?>"
                     class="whitespace-nowrap overflow-hidden text-ellipsis block"><?= str_replace("-", " ", $berita['judul']) ?></a>
-
                 </h2>
                 <p class="text-gray-500 text-sm mb-4"><?= $berita['waktu_dibuat'] ?></p>
                 <p class="text-gray-500 text-sm mb-4">
@@ -104,12 +113,8 @@ $daftar_berita = $Berita->tampilkan_berita_berdasarkan_penulis($pengguna['id']);
           Belum ada berita yang kamu tulis
         </div>
       <?php endif ?>
-
-
     </div>
-
   </section>
-
 </body>
 
 </html>
