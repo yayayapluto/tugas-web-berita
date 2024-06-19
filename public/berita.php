@@ -6,6 +6,8 @@ $Berita = new BeritaController();
 $Komentar = new KomentarController();
 $Suka = new SukaController();
 
+$judul_berita = str_replace("%20","-", $judul_berita);
+
 $berita = $Berita->tampilkan_berita($judul_berita);
 session_start();
 ?>
@@ -25,7 +27,7 @@ session_start();
 <body class="bg-gray-100 text-gray-800">
   <div class="sticky top-0">
     <nav class="bg-white shadow-md py-4 px-8 flex justify-between items-center">
-      <h1 class="text-xl font-bold text-gray-800">Web Berita</h1>
+    <a class="text-xl font-bold text-gray-800" href="/web_berita">Web Berita</a>
       <div class="flex items-center space-x-4">
         <?php
         if (isset($_SESSION['data_pengguna'])) {

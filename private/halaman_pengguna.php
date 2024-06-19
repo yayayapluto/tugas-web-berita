@@ -31,7 +31,7 @@ $daftar_berita = $Berita->tampilkan_berita_berdasarkan_penulis($pengguna['id']);
 <body class="bg-gray-100 text-gray-800 max-h-screen">
   <div class="sticky top-0">
     <nav class="bg-white shadow-md py-4 px-8 flex justify-between items-center">
-      <h1 class="text-xl font-bold text-gray-800">Web Berita</h1>
+    <a class="text-xl font-bold text-gray-800" href="/web_berita">Web Berita</a>
       <div class="flex items-center space-x-4">
         <a href="/web_berita" class="text-blue-700 hover:text-blue-800">Beranda</a>
       </div>

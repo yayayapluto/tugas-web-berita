@@ -32,7 +32,7 @@ if (!isset($_SESSION['data_pengguna'])) {
 
       <div class="flex justify-end space-x-4 mt-4">
         <a href="/web_berita/pengguna" class="px-3 py-2 text-center text-gray-500 hover:text-gray-700 rounded-md border border-gray-300">Batal</a>
-        <a href="/web_berita/handler/keluar" class="px-3 py-2 text-center text-red-500 hover:text-red-600 rounded-md bg-red-100 border border-red-200">Keluar</a>
+        <a href="/web_berita/handler/keluar" class="px-3 py-2 bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg shadow-md focus:outline-none">Keluar</a>
       </div>
     </div>
   </section>

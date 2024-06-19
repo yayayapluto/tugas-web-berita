@@ -90,7 +90,7 @@ class BeritaController extends Koneksi {
         berita.deskripsi
         FROM berita
         INNER JOIN pengguna ON berita.penulis = pengguna.id
-        WHERE judul = :judul ";
+        WHERE judul LIKE :judul ";
         $stmt = $this->pdo->prepare($query);
         $stmt->bindParam(':judul', $judul);
 

@@ -15,7 +15,11 @@ $Berita = new BeritaController();
 <body class="bg-gray-100 text-gray-800 min-h-screen">
   <div class="sticky top-0">
     <nav class="bg-white shadow-md py-4 px-8 flex justify-between items-center">
-      <h1 class="text-xl font-bold text-gray-800">Web Berita</h1>
+      <a class="text-xl font-bold text-gray-800" href="/web_berita">Web Berita</a>
+      <div class="flex items-center space-x-4">
+        <input id="searchQuery" type="text" class="border rounded-lg px-4 py-2" placeholder="Cari berita...">
+        <button onclick="searchNews()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-800">Cari</button>
+      </div>
       <div class="flex items-center space-x-4">
         <?php 
           if (isset($_SESSION['data_pengguna'])) {
@@ -38,5 +42,14 @@ $Berita = new BeritaController();
     <?php include("./components/berita/beritaTerbaru.php") ?>
   </main>
     <?php include("./components/footer.php") ?>
+  
+  <script>
+    function searchNews() {
+      const query = document.getElementById('searchQuery').value;
+      if (query) {
+        window.location.href = `/web_berita/baca/${query}`;
+      }
+    }
+  </script>
 </body>
 </html>
