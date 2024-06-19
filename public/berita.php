@@ -54,29 +54,30 @@ session_start();
           alt="<?= "Gambar untuk judul: " . str_replace("-", " ", $berita['judul']) ?>">
         <p class="text-gray-700 text-base text-justify my-4"><?= $berita['deskripsi'] ?></p>
         <div class="flex items-center space-x-2 mt-8">
-          <?php if (!$Suka->tampilkan_semua_suka_dengan_beritaId_dan_penggunaId($berita['id'], $_SESSION['data_pengguna']['id'])): ?>
-            <form action="/web_berita/handler/tambah_suka" method="post" class="inline-block">
-              <input type="hidden" name="id_pengguna" value="<?= $_SESSION['data_pengguna']['id'] ?>">
-              <input type="hidden" name="id_berita" value="<?= $berita['id'] ?>">
-              <input type="hidden" name="url_berita" value="<?= $berita['judul'] ?>">
-              <button type="submit"
-                class="bg-gray-200 w-12 h-12 rounded-full text-gray-500 text-2xl flex items-center justify-center focus:outline-none hover:bg-gray-300">
-                <i class="far fa-thumbs-up"></i>
-              </button>
-            </form>
-          <?php else: ?>
-            <form action="/web_berita/handler/hapus_suka" method="post" class="inline-block">
-              <input type="hidden" name="id_pengguna" value="<?= $_SESSION['data_pengguna']['id'] ?>">
-              <input type="hidden" name="id_berita" value="<?= $berita['id'] ?>">
-              <input type="hidden" name="url_berita" value="<?= $berita['judul'] ?>">
-              <button type="submit"
-                class="bg-blue-200 w-12 h-12 rounded-full text-blue-500 text-2xl flex items-center justify-center focus:outline-none hover:bg-blue-300">
-                <i class="fas fa-thumbs-up"></i>
-              </button>
-            </form>
+          <?php if(isset($_SESSION['data_pengguna'])): ?>
+            <?php if (!$Suka->tampilkan_semua_suka_dengan_beritaId_dan_penggunaId($berita['id'], $_SESSION['data_pengguna']['id'])): ?>
+              <form action="/web_berita/handler/tambah_suka" method="post" class="inline-block">
+                <input type="hidden" name="id_pengguna" value="<?= $_SESSION['data_pengguna']['id'] ?>">
+                <input type="hidden" name="id_berita" value="<?= $berita['id'] ?>">
+                <input type="hidden" name="url_berita" value="<?= $berita['judul'] ?>">
+                <button type="submit"
+                  class="bg-gray-200 w-12 h-12 rounded-full text-gray-500 text-2xl flex items-center justify-center focus:outline-none hover:bg-gray-300">
+                  <i class="far fa-thumbs-up"></i>
+                </button>
+              </form>
+            <?php else: ?>
+              <form action="/web_berita/handler/hapus_suka" method="post" class="inline-block">
+                <input type="hidden" name="id_pengguna" value="<?= $_SESSION['data_pengguna']['id'] ?>">
+                <input type="hidden" name="id_berita" value="<?= $berita['id'] ?>">
+                <input type="hidden" name="url_berita" value="<?= $berita['judul'] ?>">
+                <button type="submit"
+                  class="bg-blue-200 w-12 h-12 rounded-full text-blue-500 text-2xl flex items-center justify-center focus:outline-none hover:bg-blue-300">
+                  <i class="fas fa-thumbs-up"></i>
+                </button>
+              </form>
+            <?php endif ?>
           <?php endif ?>
-          <p class="text-gray-600 text-md"><?= $Suka->tampilkan_jumlah_suka_dengan_beritaId($berita['id']) ?> orang
-            menyukai berita ini</p>
+          <p class="text-gray-600 text-md"><b><?= $Suka->tampilkan_jumlah_suka_dengan_beritaId($berita['id']) ?></b> orang menyukai berita ini</p>
         </div>
 
     </section>
